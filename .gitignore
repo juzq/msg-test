@@ -1,0 +1,15 @@
+#idea项目文件夹
+.idea/
+
+#maven编译输出
+target/
+
+#idea项目文件
+*.iml
+
+#日志
+*logs/
+*.log
+
+#python缓存文件夹
+__pycache__/

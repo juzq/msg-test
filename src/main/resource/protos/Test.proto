@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+// java包
+option java_package = "com.digisky.canglong.msgtest.protobuf";
+// java类名
+option java_outer_classname="TestProto";
+
+
+
+
+// 装备背包初始化
+message PbEquipInventoryInit {
+	uint32 type = 1;// 背包类型
+	repeated PbEquip equips = 2;// 拥有的装备
+    uint32 extralCapacity = 3;// 扩展容量
+}
+
+// 装备实体
+message PbEquip {
+    uint64 id = 1;// 实体id
+    uint32 lv = 2;// 等级
+    uint32 quality = 3;// 品级
+    uint32 star = 4;// 星级
+    repeated PbExtralAtts atts = 5;// 额外属性
+}
+
+// 附加属性
+message PbExtralAtts {
+    enum PbAttType {
+        ATK = 0;// 攻击
+        DEF = 1;// 防御
+        MATK = 2;// 魔攻
+        MDEF = 3;// 魔御
+        LF = 4;// 生命
+    }
+    PbAttType attType = 1;// 属性类型
+    uint32 value = 2;//
+}
