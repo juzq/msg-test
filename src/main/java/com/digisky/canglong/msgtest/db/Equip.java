@@ -2,18 +2,26 @@ package com.digisky.canglong.msgtest.db;
 
 import java.util.Random;
 
+import org.msgpack.annotation.Message;
+
 /**
  * 装备
  *
  * @author LJX
  * @since 2019/1/7.
  */
+@Message
 public class Equip {
     
+    /** 装备唯一id */
     private long id;
+    /** 装备等级 */
     private int lv;
+    /** 装备品质 */
     private int quality;
+    /** 装备星级 */
     private int star;
+    /** 装备附加属性 */
     private int[] extralAtts = new int[5];
     
     public Equip random(long id) {

@@ -16,10 +16,15 @@ public class EquipMsg implements Serializable {
     
     private static final long serialVersionUID = -8038931657932458720L;
     
+    /** 装备唯一id */
     private long id;
+    /** 装备等级 */
     private int lv;
+    /** 装备品质 */
     private int quality;
+    /** 装备星级 */
     private int star;
+    /** 装备附加属性 */
     private int[] extralAtts = new int[5];
     
     public EquipMsg fillByEquip(Equip equip) {

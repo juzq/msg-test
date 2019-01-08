@@ -5,9 +5,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.alibaba.fastjson.JSON;
+import com.digisky.canglong.msgtest.cl.BioHelper;
+import com.digisky.canglong.msgtest.cl.gzip.SendPacketUtil;
+import com.digisky.canglong.msgtest.cl.gzip.SendPacketUtilPool;
 import com.digisky.canglong.msgtest.db.Equip;
 import com.digisky.canglong.msgtest.msg.EquipInventoryInit;
 import com.digisky.canglong.msgtest.msg.EquipMsg;
@@ -112,6 +119,43 @@ public class Start {
         EquipInventoryInit msgpackMsg = msgpack.read(msgpackBytes, EquipInventoryInit.class);
         System.out.println("msgpack deserialize use:" + (System.currentTimeMillis() - msgpackDeerializeStart));
         System.out.println(msgpackMsg.getExtralCapacity());
+        
+        // map
+        long mapSerializeStart = System.currentTimeMillis();
+        // 构建map数据
+        Map msg = new HashMap();
+        Map r = new HashMap();
+        msg.put("r", r);
+        r.put("type", 1);
+        r.put("cap", NUM);
+        List equipList = new ArrayList();
+        r.put("equips", equipList);
+        for (Equip equip : equips) {
+            Map equipMsg = new HashMap();
+            equipMsg.put("id", equip.getId());
+            equipMsg.put("lv", equip.getLv());
+            equipMsg.put("quality", equip.getQuality());
+            equipMsg.put("star", equip.getStar());
+            Map extralAttsMsg = new HashMap();
+            equipMsg.put("atts", extralAttsMsg);
+            int[] extralAtts = equip.getExtralAtts();
+            for (int i = 0; i < extralAtts.length; i++) {
+                extralAttsMsg.put(i, extralAtts[i]);
+            }
+            equipList.add(equipMsg);
+        }
+        byte[] mapBytes = BioHelper.mapToBytes(msg, 1024);
+        long gzipStart = System.currentTimeMillis();
+        // gzip
+        byte[] gzipBytes = SendPacketUtilPool.getUtil().gzip(mapBytes);
+        long now = System.currentTimeMillis();
+        System.out.println("map serialize use:" + (now - mapSerializeStart) + ", size:" +
+                mapBytes.length + ", gzip size:" + gzipBytes.length + ", gzip use:" + (now - gzipStart));
+        long mapDeserializeStart = System.currentTimeMillis();
+        Map map = BioHelper.mapFromBytes(mapBytes);
+        System.out.println("map deserialize use:" + (System.currentTimeMillis() - mapDeserializeStart));
+        Map r2 = (Map) map.get("r");
+        System.out.println(r2.get("cap"));
     }
     
     private static EquipInventoryInit createMsg(Equip[] equips) {

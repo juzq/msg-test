@@ -15,8 +15,11 @@ public class EquipInventoryInit implements Serializable {
     
     private static final long serialVersionUID = -5170790983991466787L;
     
+    /** 背包类型 */
     private int type;
+    /** 背包里的装备 */
     private EquipMsg[] equips;
+    /** 背包的扩展容量 */
     private int extralCapacity;
     
     public int getType() {
