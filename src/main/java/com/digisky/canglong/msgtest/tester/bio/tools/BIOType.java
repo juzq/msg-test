@@ -1,4 +1,4 @@
-package com.digisky.canglong.msgtest.cl;
+package com.digisky.canglong.msgtest.tester.bio.tools;
 
 public class BIOType {
 	public static final byte TYPE_NIL = (byte) -1;

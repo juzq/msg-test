@@ -1,12 +1,9 @@
 syntax = "proto3";
 
 // java包
-option java_package = "com.digisky.canglong.msgtest.protobuf";
+option java_package = "com.digisky.canglong.msgtest.tester.protobuf";
 // java类名
-option java_outer_classname="TestProto";
-
-
-
+option java_outer_classname="MsgProto";
 
 // 装备背包初始化
 message PbEquipInventoryInit {

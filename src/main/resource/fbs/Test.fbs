@@ -1,0 +1,9 @@
+namespace com.digisky.canglong.msgtest.tester.flatbuffer
+
+root_type PbEquipInventoryInit;
+
+table PbEquipInventoryInit {
+    type:uint;
+    extralCapacity:uint;
+}
+

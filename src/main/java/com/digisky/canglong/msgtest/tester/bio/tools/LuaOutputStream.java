@@ -1,4 +1,4 @@
-package com.digisky.canglong.msgtest.cl;
+package com.digisky.canglong.msgtest.tester.bio.tools;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
