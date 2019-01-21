@@ -1,9 +1,19 @@
-namespace com.digisky.canglong.msgtest.tester.flatbuffer
+namespace com.digisky.canglong.msgtest.tester.flatbuffer;
 
-root_type PbEquipInventoryInit;
 
-table PbEquipInventoryInit {
-    type:uint;
-    extralCapacity:uint;
+table FbEquipInventoryInit {
+    type:int; // 背包类型
+    equips:[FbEquip];// 拥有的装备
+    extralCapacity:int;// 扩展容量
 }
 
+table FbEquip {
+    id:int64;// 实体id
+    lv:int;// 等级
+    quality:int;// 品级
+    star:int;// 星级
+    atts:[int];// 额外属性
+}
+
+
+root_type FbEquipInventoryInit;

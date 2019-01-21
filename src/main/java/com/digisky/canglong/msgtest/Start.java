@@ -1,10 +1,9 @@
 package com.digisky.canglong.msgtest;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 import com.digisky.canglong.msgtest.db.Equip;
 import com.digisky.canglong.msgtest.tester.AbstractTester;
 import com.digisky.canglong.msgtest.tester.bio.BioTester;
+import com.digisky.canglong.msgtest.tester.flatbuffer.FbTester;
 import com.digisky.canglong.msgtest.tester.jdk.JdkTester;
 import com.digisky.canglong.msgtest.tester.json.FastJsonTester;
 import com.digisky.canglong.msgtest.tester.json.JsoniterTester;
@@ -19,7 +18,7 @@ import com.digisky.canglong.msgtest.tester.protobuf.PbTester;
  */
 public class Start {
     
-    public static final int NUM = 1000000;
+    public static final int NUM = 1000;
     
     public static long TOTAL_MEMORY = Runtime.getRuntime().totalMemory();
     
@@ -37,6 +36,7 @@ public class Start {
         AbstractTester[] testers = {
                 new JdkTester(),
                 new PbTester(),
+                new FbTester(),
                 new FastJsonTester(),
                 new JsoniterTester(),
                 new MsgpackTester(),

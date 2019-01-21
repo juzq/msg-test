@@ -25,7 +25,7 @@ public class JdkTester extends AbstractTester {
     
     @Override
     protected boolean needCompress() {
-        return false;
+        return true;
     }
     
     @Override

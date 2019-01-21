@@ -23,7 +23,7 @@ public class PbTester extends AbstractTester {
     
     @Override
     protected boolean needCompress() {
-        return false;
+        return true;
     }
     
     @Override

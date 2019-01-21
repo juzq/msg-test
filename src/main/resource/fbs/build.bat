@@ -1,0 +1,1 @@
+flatc --java -o ../../java/ Test.fbs
